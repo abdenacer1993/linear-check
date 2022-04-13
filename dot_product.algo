@@ -1,0 +1,64 @@
+// produit scalaire
+PROCEDURE dot_product(v1:FLOAT[],v2:FLOAT[])
+VAR
+    // v1 : ARRAY_OF INTEGER[n];
+    // v2 : ARRAY_OF INTEGER[n];
+    i,j,k,n:INTEGER;
+    ps:FLOAT=0;
+BEGIN
+    read(n);
+    FOR (i = 0 ; i<=n ; i++)
+        read(v1[i]);
+    
+    END_FOR
+    FOR (j = 0 ; j<=n ; j++)
+        read(v2[j]);
+    
+    END_FOR
+    FOR (k = 0 ; k<=n ; k++)
+        ps += v1[k]*v2[k];
+    
+    END_FOR
+    Write("Produit scalaire =", ps)
+END
+
+// orthogonale
+
+PROCEDURE orthogonale (v1,v2)
+VAR
+    i,j:INTEGER;
+BEGIN
+    for( i = 0; i < v1.length; i++){
+    for( j = i + 1; j < v2.length; j++){
+      if(dot_product(v1[i], v2[j]) === 0){
+          Write("v1 et v2 est orthogonal");
+          
+      }
+    }
+  }
+END
+
+// produit scalaire
+PROCEDURE dot_product(v1:FLOAT[],v2:FLOAT[]):FLOAT
+VAR
+    // v1 : ARRAY_OF INTEGER[n];
+    // v2 : ARRAY_OF INTEGER[n];
+    i,j,k,n:INTEGER;
+    ps:FLOAT=0;
+BEGIN
+    read(n);
+    FOR (i = 0 ; i<=n ; i++)
+        read(v1[i]);
+    
+    END_FOR
+    FOR (j = 0 ; j<=n ; j++)
+        read(v2[j]);
+    
+    END_FOR
+    FOR (k = 0 ; k<=n ; k++)
+        ps += v1[k]*v2[k];
+    
+    END_FOR
+    RETURN ps;
+END
+
