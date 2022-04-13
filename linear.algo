@@ -1,0 +1,106 @@
+//solution 1
+ALGORITHM linear_s1
+VAR
+    tab1 : ARRAY_OF INTEGER[50];
+    tab2 : ARRAY_OF INTEGER[40];
+    i,j : INTEGER;
+    egaux,noegaux,sum_tab1,sum_tab2 : INTEGER=0;
+BEGIN
+    read(tab1);
+    read(tab2);
+    FOR i FROM 0 TO tab1.length STEP i++  DO
+        sum_tab1 += tab1[i];
+        FOR j FROM 0 TO tab2.length STEP j++  DO
+            sum_tab2 += tab2[j];
+            IF (tab1[i]=tab2[j]) THEN
+                egaux += tab1[i];
+            ELSE
+                noegaux += (sum_tab1+sum_tab2) - egaux;
+            END_IF
+        END_FOR
+    END_FOR
+    Write("la somme de deux tableaux est :" sum_tab1+sum_tab2 );
+    Write("la somme des nombres egaux est :" egaux);
+    Write("la somme des nombres non egaux est :" noegaux);
+END
+
+//solution 2
+ALGORITHM linear_s2
+VAR
+    tab1 : ARRAY_OF INTEGER[50];
+    tab2 : ARRAY_OF INTEGER[40];
+    i : INTEGER;
+    j,egaux,noegaux : INTEGER=0;
+BEGIN
+    read(tab1);
+    read(tab2);
+    FOR i FROM 0 TO tab1.length STEP i++  DO
+        WHILE ((tab1[i] <> tab2[j]) and (j <tab2.length)) DO
+            j++;
+        END_WHILE
+        IF (j = tab2.length) THEN
+            noegaux = noegaux + tab1[i];
+        ELSE
+                egaux +=  tab1[i];
+        END_IF
+    END_FOR
+    
+    Write("la somme des nombre egaux est :" egaux);
+    Write("la somme des nombre non egaux est :" noegaux);
+END
+
+ALGORITHM linear_s3
+VAR
+    tab1 : ARRAY_OF INTEGER[50];
+    tab2 : ARRAY_OF INTEGER[40];
+    i,j : INTEGER;
+    indice : BOOLEAN;
+    egaux,noegaux : INTEGER=0;
+BEGIN
+    read(tab1);
+    read(tab2);
+    FOR (i=0 ; i<tab1.length;i++)
+        FOR (j=0 ; j<tab2.length;j++)
+            IF (tab1[i]=tab2[j]) THEN
+                indice=true;
+                egaux += tab1[i];
+            END_IF
+        END_FOR
+        IF (indice = false) THEN
+            noegaux +=tab1[i];
+        END_IF
+    END_FOR
+    
+    Write("la somme des nombres egaux est :" egaux);
+    Write("la somme des nombres non egaux est :" noegaux);
+END
+
+//solution 4
+ALGORITHM linear_s2
+
+VAR
+    tab1 : ARRAY_OF INTEGER[50];
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    egaux,noegaux : INTEGER=0;
+    j : INTEGER;
+BEGIN
+    read(tab1);
+    
+    FOR (i=0 ; i<tab1.length;i++)
+        IF (htab.lookup(tab1[i])) THEN
+            count = htab.get(tab1[i]);
+            htab.insert(tab1[i],count+1);
+        ELSE
+            htab.insert(tab1[i],1);
+        END_IF
+    END_FOR
+    j=0;
+    IF (htab.get(count[j]) =1) THEN
+        noegaux += htab.get(tab[j]);
+    ELSE
+        egaux += htab.get(tab[j]) * htab.get(count[j]);
+    END_IF
+    j++
+    Write("la somme des nombres egaux est :" egaux);
+    Write("la somme des nombres non egaux est :" noegaux);
+END
